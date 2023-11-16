@@ -277,7 +277,7 @@ struct t_bytes_source
 int t_bytes_source::f_read()
 {
 	auto& bytes = f_as<t_bytes&>(v_buffer);
-	auto n = v_read(v_buffer, f_global()->f_as(0), f_global()->f_as(bytes.f_size()));
+	auto n = v_read(v_buffer, 0, bytes.f_size());
 	f_check<size_t>(n, L"number of bytes");
 	v_n = f_as<size_t>(n);
 	v_i = 0;
@@ -460,13 +460,13 @@ struct t_bytes_target
 	}
 	~t_bytes_target()
 	{
-		if (v_n > 0) v_write(v_buffer, f_global()->f_as(0), f_global()->f_as(v_n));
+		if (v_n > 0) v_write(v_buffer, 0, v_n);
 	}
 	void f_put(char a_c)
 	{
 		auto& bytes = f_as<t_bytes&>(v_buffer);
 		if (v_n >= bytes.f_size()) {
-			v_write(v_buffer, f_global()->f_as(0), f_global()->f_as(v_n));
+			v_write(v_buffer, 0, v_n);
 			v_n = 0;
 		}
 		bytes[v_n++] = a_c;
