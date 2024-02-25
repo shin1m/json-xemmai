@@ -372,8 +372,10 @@ void t_generator<T_target>::f_value(const t_pvalue& a_value, size_t a_depth)
 {
 	if (!a_value) {
 		f_put("null"sv);
-	} else if (f_is<bool>(a_value)) {
-		f_put(f_as<bool>(a_value) ? "true"sv : "false"sv);
+	} else if (a_value.f_tag() == e_tag__FALSE) {
+		f_put("false"sv);
+	} else if (a_value.f_tag() == e_tag__TRUE) {
+		f_put("true"sv);
 	} else if (f_is<intptr_t>(a_value)) {
 		char cs[32];
 		auto [p, ec] = std::to_chars(cs, cs + sizeof(cs), f_as<intptr_t>(a_value));

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
-project(json-xemmai VERSION 202308)
-find_package(xemmai 202306 REQUIRED)
+project(json-xemmai VERSION 202402)
+find_package(xemmai 202402 REQUIRED)
 add_subdirectory(src)
 enable_testing()
 add_subdirectory(test)
