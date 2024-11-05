@@ -372,9 +372,9 @@ void t_generator<T_target>::f_value(const t_pvalue& a_value, size_t a_depth)
 {
 	if (!a_value) {
 		f_put("null"sv);
-	} else if (a_value.f_tag() == e_tag__FALSE) {
+	} else if (a_value.f_tag() == c_tag__FALSE) {
 		f_put("false"sv);
-	} else if (a_value.f_tag() == e_tag__TRUE) {
+	} else if (a_value.f_tag() == c_tag__TRUE) {
 		f_put("true"sv);
 	} else if (f_is<intptr_t>(a_value)) {
 		char cs[32];
