@@ -513,27 +513,27 @@ struct t_string_target : t_stringer
 std::vector<std::pair<t_root, t_rvalue>> t_library::f_define()
 {
 	return t_define(this)
-		(L"parse"sv, t_static<t_pvalue(*)(const t_pvalue&), [](auto a_read)
-		{
-			t_bytes_source source(a_read);
-			return t_parser(source).f_value();
-		}>())
-		(L"generate"sv, t_static<void(*)(const t_pvalue&, size_t, const t_pvalue&), [](auto a_value, auto a_space, auto a_write)
-		{
-			t_bytes_target target(a_write);
-			t_generator(target, a_space).f_value(a_value, 0);
-		}>())
-		(L"build"sv, t_static<t_pvalue(*)(const t_string&), [](auto a_value)
-		{
-			t_string_source source(a_value);
-			return t_parser(source).f_value();
-		}>())
-		(L"stringify"sv, t_static<t_object*(*)(const t_pvalue&, size_t), [](auto a_value, auto a_space)
-		{
-			t_string_target target;
-			t_generator(target, a_space).f_value(a_value, 0);
-			return target.f_get();
-		}>())
+	(L"parse"sv, t_static<t_pvalue(*)(const t_pvalue&), [](auto a_read)
+	{
+		t_bytes_source source(a_read);
+		return t_parser(source).f_value();
+	}>())
+	(L"generate"sv, t_static<void(*)(const t_pvalue&, size_t, const t_pvalue&), [](auto a_value, auto a_space, auto a_write)
+	{
+		t_bytes_target target(a_write);
+		t_generator(target, a_space).f_value(a_value, 0);
+	}>())
+	(L"build"sv, t_static<t_pvalue(*)(const t_string&), [](auto a_value)
+	{
+		t_string_source source(a_value);
+		return t_parser(source).f_value();
+	}>())
+	(L"stringify"sv, t_static<t_object*(*)(const t_pvalue&, size_t), [](auto a_value, auto a_space)
+	{
+		t_string_target target;
+		t_generator(target, a_space).f_value(a_value, 0);
+		return target.f_get();
+	}>())
 	;
 }
 
