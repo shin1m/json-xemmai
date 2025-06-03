@@ -7,7 +7,7 @@ list_to_string = utilities.list_to_string
 parse = @(text)
 	list = [
 	n = text.size(
-	for i = 0; i < n; i = i + 1: list.push(text.code_at(i
+	for i = 0; i < n; i = i + 1; list.push(text.code_at(i
 	json.parse(Source(list).read
 test = @(f)
 	f(parse
